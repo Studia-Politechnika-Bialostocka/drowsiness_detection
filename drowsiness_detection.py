@@ -27,7 +27,7 @@ def eye_aspect_ratio(eye):
     return ear
 
 
-def run(video_frame, sound_path):
+def run(sound_path):
     print("Starting drowsiness detection...")
     # define two constants, one for the eye aspect ratio to indicate
     # blink and then a second constant for the number of consecutive
@@ -54,7 +54,7 @@ def run(video_frame, sound_path):
     # start the video stream thread
     print("[INFO] starting video stream thread...")
     vs = VideoStream(0).start()
-    time.sleep(1.0)
+    time.sleep(0.5)
     # loop over frames from the video stream
     while True:
         # grab the frame from the threaded video file stream, resize
@@ -65,6 +65,8 @@ def run(video_frame, sound_path):
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         # detect faces in the grayscale frame
         rects = detector(gray, 0)
+        cv2.putText(frame, "PRESS q TO QUIT!", (125, 325),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 229), 2)
 
         for rect in rects:  # loop over the face detections
             # determine the facial landmarks for the face region, then
@@ -117,10 +119,6 @@ def run(video_frame, sound_path):
 
             # show the frame
         cv2.imshow("Frame", frame)
-        # dispay imutils camera frame into tkinter window
-
-
-        # put the frame into video_frame
 
         key = cv2.waitKey(1) & 0xFF
 

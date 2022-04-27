@@ -1,17 +1,6 @@
 #!/usr/bin/python3
 import pathlib
-import tkinter.ttk as ttk
 import pygubu
-# from __future__ import print_function
-from PIL import Image
-from PIL import ImageTk
-# import Tkinter as tki
-import threading
-import datetime
-import numpy as np
-import imutils
-import cv2
-import os
 
 import drowsiness_detection
 
@@ -31,20 +20,27 @@ class WykrywanieSennosciApp:
         builder.import_variables(self, ["__tkvar"])
 
         builder.connect_callbacks(self)
+        self.sound_path = PROJECT_PATH / "sounds" / "alarm.wav"
+
 
     def run(self):
         self.mainwindow.mainloop()
 
     def start_program(self):
-        # get path to sound file from sounds directory
-        # self.SOUND_PATH = os.path.join(PROJECT_PATH, "sounds", self.__tkvar.get())
-        sound_path = "C:\\Users\\Mateusz\\Documents\\university\\drowsiness_detection\\sounds\\doorbell.wav"
-        print("Start programu")
-        video_frame = self.builder.get_object("video_frame")
-        drowsiness_detection.run(video_frame, sound_path)
+        drowsiness_detection.run(self.sound_path)
 
     def set_sound(self, option):
-        pass
+        base_sound_path = PROJECT_PATH / "sounds"
+        if option == "Alarm":
+            self.sound_path = base_sound_path / "alarm.wav"
+        elif option == "DoubleBeep":
+            self.sound_path = base_sound_path / "double-beep.wav"
+        elif option == "DoorBell":
+            self.sound_path = base_sound_path / "doorbell.wav"
+        elif option == "SciFi":
+            self.sound_path = base_sound_path / "sci-fi.wav"
+        elif option == "Tone-Loop":
+            self.sound_path = base_sound_path / "simple-tone-loop.wav"
 
 
 if __name__ == "__main__":
