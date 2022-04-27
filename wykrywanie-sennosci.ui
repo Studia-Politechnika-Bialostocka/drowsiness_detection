@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface version="1.2">
+  <object class="tk.Toplevel" id="main_frame">
+    <property name="background">#ff0050</property>
+    <property name="height">200</property>
+    <property name="width">200</property>
+    <child>
+      <object class="tk.Label" id="label1">
+        <property name="font">{Microsoft} 24 {bold}</property>
+        <property name="text" translatable="yes">Wykrywanie senności</property>
+        <layout manager="pack">
+          <property name="pady">10</property>
+          <property name="side">top</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Frame" id="actions_frame">
+        <property name="background">#00f2ea</property>
+        <property name="height">200</property>
+        <property name="width">350</property>
+        <layout manager="pack">
+          <property name="padx">20</property>
+          <property name="pady">20</property>
+          <property name="side">top</property>
+        </layout>
+        <child>
+          <object class="tk.Button" id="button2">
+            <property name="command" type="command" cbtype="simple">start_program</property>
+            <property name="text" translatable="yes">Run</property>
+            <layout manager="pack">
+              <property name="ipadx">5</property>
+              <property name="padx">10</property>
+              <property name="pady">10</property>
+              <property name="side">right</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.OptionMenu" id="optionmenu3">
+            <property name="command" type="command" cbtype="simple">set_sound</property>
+            <property name="value">Sound0</property>
+            <property name="values">Sound1,Sound2,Sound3</property>
+            <layout manager="pack">
+              <property name="padx">10</property>
+              <property name="pady">10</property>
+              <property name="side">left</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Frame" id="video_frame">
+        <property name="height">500</property>
+        <property name="width">500</property>
+        <layout manager="pack">
+          <property name="padx">10</property>
+          <property name="pady">10</property>
+          <property name="side">top</property>
+        </layout>
+      </object>
+    </child>
+  </object>
+</interface>
